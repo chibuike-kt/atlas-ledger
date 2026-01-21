@@ -1,0 +1,14 @@
+/vendor/
+/.env
+/.env.*
+!/env.example
+
+/public/.phpstorm.meta.php
+/.idea/
+/.vscode/
+
+*.log
+*.cache
+
+.DS_Store
+Thumbs.db

@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS rate_limits (
+  k            VARBINARY(190) NOT NULL PRIMARY KEY,
+  hits         INT NOT NULL DEFAULT 0,
+  reset_at     TIMESTAMP(6) NOT NULL,
+  updated_at   TIMESTAMP(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  KEY ix_reset_at (reset_at)
+) ENGINE=InnoDB;
