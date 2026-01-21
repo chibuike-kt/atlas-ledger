@@ -49,7 +49,6 @@ public/
 routes/
 
 markdown
-Copy code
 
 ## Requirements
 
@@ -66,27 +65,17 @@ composer install
 Configure environment
 Copy and edit the environment file:
 
-bash
-Copy code
 copy .env.example .env
 Modify the values to suit your environment (database credentials, API keys, etc).
 
 Run migrations
-bash
-Copy code
 php app/Interface/Cli/migrate.php
 Start the server
-bash
-Copy code
 php -S 127.0.0.1:8000 -t public
 API Endpoints
 Health Check
-bash
-Copy code
 GET /health
 Create Wallet
-bash
-Copy code
 POST /wallets
 Headers:
   Content-Type: application/json
@@ -98,8 +87,6 @@ Body:
   "owner_id": "u1"
 }
 Deposit
-yaml
-Copy code
 POST /deposits
 Headers:
   Content-Type: application/json
@@ -113,8 +100,6 @@ Body:
   "external_ref": "bank_tx_001"
 }
 Transfer
-yaml
-Copy code
 POST /transfers
 Headers:
   Content-Type: application/json
@@ -128,8 +113,6 @@ Body:
   "amount_kobo": 50000
 }
 Check Balance
-yaml
-Copy code
 POST /wallets/balance
 Headers:
   Content-Type: application/json
@@ -142,8 +125,6 @@ Body:
 }
 Reconciliation Queries
 Unbalanced Journals
-sql
-Copy code
 SELECT
   HEX(j.id) AS journal_id,
   SUM(l.amount_minor) AS sum_minor,
@@ -153,8 +134,6 @@ JOIN ledger_lines l ON l.journal_id = j.id
 GROUP BY j.id
 HAVING SUM(l.amount_minor) <> 0 OR COUNT(*) < 2;
 Stored vs Derived Balance Drift
-sql
-Copy code
 SELECT
   HEX(a.id) AS account_id,
   b.balance_minor AS stored_balance,
